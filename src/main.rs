@@ -45,7 +45,6 @@ fn main() {
 
         println!();
         println!("Modified files: {:?}", staged);
-        // Commit all changes (git commit -m "commit message")
         repo.commit_all("wip").unwrap();
 
         // Pull and rebase
@@ -55,7 +54,6 @@ fn main() {
         // Push
         println!("Push");
         repo.cmd(&["push", "-u", "origin", &branch_name.to_string()]).unwrap();
-
         println!("Pushed changes to {}", branch_name.to_string());
 
         sleep();
