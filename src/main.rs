@@ -1,3 +1,4 @@
+use std::io::Write;
 use std::str::FromStr;
 use std::thread;
 use std::time::Duration;
@@ -48,5 +49,7 @@ fn main() {
 
 fn sleep() {
     print!(".");
+    std::io::stdout().flush().unwrap();
+
     thread::sleep(Duration::from_secs(30));
 }
