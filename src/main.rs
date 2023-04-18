@@ -25,7 +25,6 @@ fn main() {
         // Check if there are any changes to commit
         let modified = repo.list_modified().unwrap();
         if modified.is_empty() {
-            print!(".");
             sleep();
             continue;
         }
@@ -48,5 +47,6 @@ fn main() {
 }
 
 fn sleep() {
+    print!(".");
     thread::sleep(Duration::from_secs(30));
 }
