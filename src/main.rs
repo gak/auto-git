@@ -36,15 +36,14 @@ fn main() {
         // Check if there are any changes to commit
         let modified = repo.list_modified().unwrap();
         let added = repo.list_added().unwrap();
-        let all = [&modified[..], &added[..]].concat();
-
-        if all.is_empty() {
+        let staged = [&modified[..], &added[..]].concat();
+        if staged.is_empty() {
             sleep();
             continue;
         }
 
         println!();
-        println!("Modified files: {:?}", all);
+        println!("Modified files: {:?}", staged);
         // Commit all changes (git commit -m "commit message")
         repo.commit_all("wip").unwrap();
 
