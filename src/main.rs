@@ -20,6 +20,7 @@ fn main() {
 
     let repo = rustygit::Repository::new(".");
 
+
     let branches = repo.list_branches().unwrap();
     if !branches.contains(&branch_name.to_string()) {
         repo.create_local_branch(&branch_name).unwrap();
@@ -44,7 +45,6 @@ fn main() {
 
         println!();
         println!("Modified files: {:?}", staged);
-        // Commit all changes (git commit -m "commit message")
         repo.commit_all("wip").unwrap();
 
         // Pull and rebase
@@ -53,8 +53,7 @@ fn main() {
 
         // Push
         println!("Push");
-        repo.push().unwrap();
-
+        repo.cmd(&["push", "-u", "origin", &branch_name.to_string()]).unwrap();
         println!("Pushed changes to {}", branch_name.to_string());
 
         sleep();
@@ -64,6 +63,5 @@ fn main() {
 fn sleep() {
     print!(".");
     std::io::stdout().flush().unwrap();
-
     thread::sleep(Duration::from_secs(1));
 }
