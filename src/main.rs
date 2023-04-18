@@ -52,6 +52,7 @@ fn main() {
         repo.cmd(&["pull", "--rebase"]).unwrap();
 
         // Push
+        println!("Push");
         repo.push().unwrap();
 
         println!("Pushed changes to {}", branch_name.to_string());
