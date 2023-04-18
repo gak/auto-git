@@ -22,6 +22,16 @@ fn main() {
         let untracked = untracked.iter().map(|s| s.as_str()).collect::<Vec<&str>>();
         repo.add(untracked).unwrap();
 
+        // Check if there are any changes to commit
+        let modified = repo.list_modified().unwrap();
+        if modified.is_empty() {
+            print!(".");
+            sleep();
+            continue;
+        }
+
+        println!();
+        println!("Modified files: {:?}", modified);
         // Commit all changes (git commit -m "commit message")
         repo.commit_all("wip").unwrap();
 
@@ -31,7 +41,12 @@ fn main() {
         // Push
         repo.push().unwrap();
 
-        // Sleep for 5 minutes
-        thread::sleep(Duration::from_secs(300));
+        println!("Pushed changes to {}", branch_name.to_string());
+
+        sleep();
     }
+}
+
+fn sleep() {
+    thread::sleep(Duration::from_secs(30));
 }
