@@ -19,6 +19,7 @@ fn main() {
     println!("Auto git running on branch {}", branch_name);
 
     let repo = rustygit::Repository::new(".");
+    
 
     let branches = repo.list_branches().unwrap();
     if !branches.contains(&branch_name.to_string()) {
