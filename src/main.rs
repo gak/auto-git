@@ -16,6 +16,8 @@ fn main() {
 
     repo.switch_branch(&branch_name).unwrap();
 
+    // repo.cmd(&["branch", "--set-upstream=origin/wip", "wip"]).unwrap();
+
     loop {
         // Add all untracked files (git add .)
         let untracked = repo.list_untracked().unwrap();
