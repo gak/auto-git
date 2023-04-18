@@ -65,5 +65,5 @@ fn sleep() {
     print!(".");
     std::io::stdout().flush().unwrap();
 
-    thread::sleep(Duration::from_secs(1));
+    thread::sleep(Duration::from_secs(30));
 }
