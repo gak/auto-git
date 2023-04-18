@@ -2,26 +2,21 @@ use std::io::Write;
 use std::str::FromStr;
 use std::thread;
 use std::time::Duration;
+use clap::Parser;
 use rustygit::types::BranchName;
 
-#[derive(Parser, Debug)]
+#[derive(clap::Parser, Debug)]
 #[command(author, version, about, long_about = None)]
 struct Args {
-    /// Name of the person to greet
-    #[arg(short, long)]
+    /// Git branch to work out. Will switch to this branch automatically.
     branch: String,
-
-    /// Number of times to greet
-    #[arg(short, long, default_value_t = 1)]
-    count: u8,
 }
 
 fn main() {
     let args = Args::parse();
+    let branch_name = BranchName::from_str(&args.branch).unwrap();
 
-fn main() {
-    let branch_name = "wip";
-    let branch_name = BranchName::from_str(branch_name).unwrap();
+    println!("Auto git running on branch {}", branch_name);
 
     let repo = rustygit::Repository::new(".");
 
