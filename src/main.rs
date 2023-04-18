@@ -16,8 +16,6 @@ fn main() {
 
     repo.switch_branch(&branch_name).unwrap();
 
-    // repo.cmd(&["branch", "--set-upstream=origin/wip", "wip"]).unwrap();
-
     loop {
         // Add all untracked files (git add .)
         let untracked = repo.list_untracked().unwrap();
@@ -28,7 +26,7 @@ fn main() {
         repo.commit_all("wip").unwrap();
 
         // Pull and rebase
-        repo.cmd(&["pull", "--rebase", "origin/wip"]).unwrap();
+        repo.cmd(&["pull", "--rebase", "origin", "wip"]).unwrap();
 
         // Push
         repo.push().unwrap();
