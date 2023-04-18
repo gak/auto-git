@@ -19,7 +19,7 @@ fn main() {
     println!("Auto git running on branch {}", branch_name);
 
     let repo = rustygit::Repository::new(".");
-    
+
 
     let branches = repo.list_branches().unwrap();
     if !branches.contains(&branch_name.to_string()) {
@@ -54,7 +54,7 @@ fn main() {
 
         // Push
         println!("Push");
-        repo.push().unwrap();
+        repo.cmd(&["push", "-u", "origin", &branch_name.to_string()]).unwrap();
 
         println!("Pushed changes to {}", branch_name.to_string());
 
