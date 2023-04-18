@@ -2,6 +2,7 @@
 name = "auto-git"
 version = "0.1.0"
 edition = "2021"
+license = "MIT OR Apache-2.0"
 description = "A simple CLI tool to automatically push and pull to git."
 authors = ["gak@gak0.com"]
 keywords = ["git", "cli", "sync"]

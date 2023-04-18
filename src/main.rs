@@ -35,20 +35,24 @@ fn main() {
 
         // Check if there are any changes to commit
         let modified = repo.list_modified().unwrap();
-        if modified.is_empty() {
+        let added = repo.list_added().unwrap();
+        let staged = [&modified[..], &added[..]].concat();
+        if staged.is_empty() {
             sleep();
             continue;
         }
 
         println!();
-        println!("Modified files: {:?}", modified);
+        println!("Modified files: {:?}", staged);
         // Commit all changes (git commit -m "commit message")
         repo.commit_all("wip").unwrap();
 
         // Pull and rebase
+        println!("Pull rebase");
         repo.cmd(&["pull", "--rebase"]).unwrap();
 
         // Push
+        println!("Push");
         repo.push().unwrap();
 
         println!("Pushed changes to {}", branch_name.to_string());
@@ -61,5 +65,5 @@ fn sleep() {
     print!(".");
     std::io::stdout().flush().unwrap();
 
-    thread::sleep(Duration::from_secs(30));
+    thread::sleep(Duration::from_secs(1));
 }
