@@ -26,7 +26,7 @@ fn main() {
         repo.commit_all("wip").unwrap();
 
         // Pull and rebase
-        repo.cmd(&["pull", "--rebase", "origin"]).unwrap();
+        repo.cmd(&["pull", "--rebase"]).unwrap();
 
         // Push
         repo.push().unwrap();
