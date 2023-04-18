@@ -48,6 +48,7 @@ fn main() {
         repo.commit_all("wip").unwrap();
 
         // Pull and rebase
+        println!("Pull rebase");
         repo.cmd(&["pull", "--rebase"]).unwrap();
 
         // Push
