@@ -48,11 +48,11 @@ fn main() {
         repo.commit_all("wip").unwrap();
 
         // Pull and rebase
-        println!("Pull rebase");
+        println!("pull --rebase");
         repo.cmd(&["pull", "--rebase"]).unwrap();
 
         // Push
-        println!("Push");
+        println!("push");
         repo.push().unwrap();
 
         println!("Pushed changes to {}", branch_name.to_string());
